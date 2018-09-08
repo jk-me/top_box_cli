@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/fresh_cli_env'
+
+FreshCli::CLI.new.call
