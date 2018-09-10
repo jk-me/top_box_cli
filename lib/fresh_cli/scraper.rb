@@ -28,11 +28,11 @@ class Scraper
 
   def self.scrape_movie_page( url = '/title/tt3104988') #?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=f9f31d04-fc22-4d12-86b4-f46e25aa2f6f&pf_rd_r=9QK3BADQX8VE4EES1Q9S&pf_rd_s=center-1&pf_rd_t=15506&pf_rd_i=boxoffice&ref_=cht_bo_2')
     doc = Nokogiri::HTML(open('https://www.imdb.com' + url))
-
+    #binding.pry
     # metascores = doc.css('.metacriticScore').text.strip
     # ratings = doc.css('.txt-block span')[0].text.capitalize
     # runtimes = doc.css('.txt-block time').text
-    # reviews = doc.css('.titleReviewBarSubItem a').attribute('href').value
+    # reviews url = doc.css('.titleReviewBarSubItem a').attribute('href').value
   end
 
   def scrape_review_page(url = 'title/tt3104988/criticreviews?ref_=tt_ov_rt')

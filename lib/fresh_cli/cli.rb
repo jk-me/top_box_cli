@@ -14,6 +14,7 @@ class FreshCli::CLI
     #parse array of movie objects to output list
     #puts "1. Crazy Rich Asians, Tomatometr: 94%, Audience Score: 87%"
     Movie.new_from_collection(Scraper.scrape_movie_list)
+    #Movie.all[1].get_movie_details
     binding.pry
 
     #etc.

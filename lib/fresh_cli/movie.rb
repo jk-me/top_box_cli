@@ -1,5 +1,5 @@
 class Movie
-  attr_accessor :title, :weeks_in_theater, :total_gross, :url, :movie_page
+  attr_accessor :title, :weeks_in_theater, :total_gross, :url, :summary, :metascore, :rating, :runtime, :review_url, :reviews
   @@all=[]
 
   def initialize(attribute_hash)
@@ -18,13 +18,17 @@ class Movie
     movie_attributes_array.each{ |x| Movie.new(x) }
   end
 
-  def summary
-    #retrieves movie summar
-    summaries = Scraper.scrape_movie_page(@url).css('.inline.canwrap span')[0].text.strip
+  def get_movie_details
+    movie_page = Scraper.scrape_movie_page(@url)
+    @summary = movie_page.css('.inline.canwrap span')[0].text.strip
+    @metascore = movie_page.css('.metacriticScore').text.strip
+    @rating = movie_page.css('.txt-block span')[0].text.capitalize
+    @runtime = movie_page.css('.txt-block time').text
+    @review_url = movie_page.css('.titleReviewBarSubItem a').attribute('href').value
   end
 
   def reviews
-    #retrieves 5 critic reviews
+    Review.new
   end
 
 end
