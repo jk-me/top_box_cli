@@ -1,21 +1,26 @@
 class Movie
-  attr_accessor :title, :tomato_score, :audience_score, :url
+  attr_accessor :title, :weeks_in_theater, :total_gross, :url, :movie_page
   @@all=[]
 
-  def initialize(title, tomato_score, audience_score, url)
-    @title = title
-    @tomato_score = tomato_score
-    @audience_score = audience_score
-    @url = url
+  def initialize(attribute_hash)
+    @title = attribute_hash[:title]
+    @weeks_in_theater = attribute_hash[:weeks_in_theater]
+    @total_gross = attribute_hash[:total_gross]
+    @url = attribute_hash[:url]
     @@all << self
   end
 
-  def all
+  def self.all
     @@all
   end
 
+  def self.new_from_collection(movie_attributes_array)
+    movie_attributes_array.each{ |x| Movie.new(x) }
+  end
+
   def summary
-    #retrieves movie summary
+    #retrieves movie summar
+    summaries = Scraper.scrape_movie_page(@url).css('.inline.canwrap span')[0].text.strip
   end
 
   def reviews

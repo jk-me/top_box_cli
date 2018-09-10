@@ -1,16 +1,21 @@
 #cli controller
-
-class FreshCli:: CLI
+require 'pry'
+require_relative './scraper'
+require_relative './movie'
+class FreshCli::CLI
 
   def call
     puts 'Current Top Box Office Movies certified fresh by RottenTomatoes.com'
     list_movies
-    menu
+    #menu
   end
 
   def list_movies
     #parse array of movie objects to output list
-    puts "1. Crazy Rich Asians, Tomatometr: 94%, Audience Score: 87%"
+    #puts "1. Crazy Rich Asians, Tomatometr: 94%, Audience Score: 87%"
+    Movie.new_from_collection(Scraper.scrape_movie_list)
+    binding.pry
+
     #etc.
   end
 

@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 
+#require "bundler/setup"
 require './lib/fresh_cli_env'
 
 FreshCli::CLI.new.call
+#Scraper.new.make_movies
 #Scraper.new.scrape_movie
 #Scraper.new.scrape_review
