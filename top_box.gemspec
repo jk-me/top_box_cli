@@ -6,12 +6,12 @@ require "top_box/version"
 Gem::Specification.new do |spec|
   spec.name          = "top_box"
   spec.version       = TopBox::VERSION
-  spec.authors       = ["'Jenny K'"]
+  spec.authors       = ["'Jenny Kam'"]
   spec.email         = ["'jkam17@gmail.com'"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Top grossing movies currently in theaters. }
+  spec.description   = %q{Provides movie summaries, and critic reviews from imdb.com}
+  spec.homepage      = "https://github.com/jk-me/top_box_cli"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
