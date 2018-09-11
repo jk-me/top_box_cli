@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/top_box_env'
+
+TopBox::CLI.new.call

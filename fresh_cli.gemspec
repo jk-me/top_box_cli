@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "fresh_cli/version"
+require "top_box/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "fresh_cli"
-  spec.version       = FreshCli::VERSION
+  spec.name          = "top_box"
+  spec.version       = TopBox::VERSION
   spec.authors       = ["'Jenny K'"]
   spec.email         = ["'jkam17@gmail.com'"]
 

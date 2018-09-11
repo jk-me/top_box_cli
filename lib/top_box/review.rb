@@ -1,4 +1,4 @@
-class FreshCli::Review
+class TopBox::Review
   attr_accessor :score, :publication, :author, :summary
 
   def initialize(attribute_hash)

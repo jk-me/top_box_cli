@@ -1,15 +1,15 @@
-class FreshCli::CLI
+class TopBox::CLI
 
   def call
     puts 'Current Top Box Office Movies by imdb.com'
-    FreshCli::Movie.new_from_collection(Scraper.scrape_movie_list)
+    TopBox::Movie.new_from_collection(Scraper.scrape_movie_list)
     list_movies
     menu
   end
 
   def list_movies
     #parse array of movie objects to output list
-    FreshCli::Movie.all.each do |m|
+    TopBox::Movie.all.each do |m|
       puts "#{m.num}. #{m.title}"
       puts "Week #{m.weeks_in_theater}, Total gross: #{m.total_gross}"
       puts '--------------'
@@ -21,8 +21,8 @@ class FreshCli::CLI
     puts "Enter number of a movie from the list to view a plot summary, 'list' to see the list of movies again or 'exit' to quit"
     x = gets.strip
     num = x.to_i
-    if num > 0 and num < FreshCli::Movie.all.length + 1
-      m = FreshCli::Movie.all[num-1]
+    if num > 0 and num < TopBox::Movie.all.length + 1
+      m = TopBox::Movie.all[num-1]
       m.get_movie_details
 
       puts "---------"

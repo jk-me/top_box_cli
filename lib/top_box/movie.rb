@@ -1,4 +1,4 @@
-class FreshCli::Movie
+class TopBox::Movie
   attr_accessor :title, :weeks_in_theater, :total_gross, :url, :summary, :metascore, :rating, :runtime, :review_url, :reviews
   @@all=[]
 
@@ -20,7 +20,7 @@ class FreshCli::Movie
   end
 
   def self.new_from_collection(movies_attributes_array)
-    movies_attributes_array.each{ |x| FreshCli::Movie.new(x) }
+    movies_attributes_array.each{ |x| TopBox::Movie.new(x) }
   end
 
   def get_movie_details
@@ -36,7 +36,7 @@ class FreshCli::Movie
     if @reviews = []
       reviews_array = Scraper.scrape_review_page("#{@url}/#{@review_url}")
       reviews_array.each do |x|
-        a = FreshCli::Review.new(x)
+        a = TopBox::Review.new(x)
         @reviews << a
       end
     end
