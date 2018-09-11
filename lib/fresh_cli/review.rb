@@ -4,11 +4,8 @@ class FreshCli::Review
   def initialize(attribute_hash)
     @score = attribute_hash[:score]
     @publication = attribute_hash[:publication]
-    @author = attribute_hash[:author]
     @summary = attribute_hash[:summary]
+    @author = attribute_hash[:author]
   end
 
 end
-
-#movie.reviews //sends url to Review class
-#Review.new_from_collection(Scraper.scrape_review_page(self.review_url))

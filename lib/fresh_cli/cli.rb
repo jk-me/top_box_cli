@@ -1,17 +1,9 @@
-#cli controller
-require 'pry'
-
 class FreshCli::CLI
-#Movie atts :title, :weeks_in_theater, :total_gross, :url
-# :summary, :metascore, :rating, :runtime, :review_url, :reviews
+
   def call
     puts 'Current Top Box Office Movies by imdb.com'
     FreshCli::Movie.new_from_collection(Scraper.scrape_movie_list)
     list_movies
-    # FreshCli::Movie.all.each { |movie| #runs slowly
-    #   movie.get_movie_details
-    #   movie.get_reviews
-    # }
     menu
   end
 
@@ -39,7 +31,8 @@ class FreshCli::CLI
       puts "---------"
       puts m.summary
       puts "---------"
-
+      puts "Would you like to see some Metacritic reviews from this movie? y/n"
+      m.get_reviews
       review_menu(m)
     elsif x=='exit'
       exit
@@ -53,15 +46,17 @@ class FreshCli::CLI
   end
 
   def review_menu(m)
-    #asks if user would like to see reviewsfor specific movie
-    puts "Would you like to see some Metacritic reviews from this movie? y/n"
+    #asks if user would like to see reviews for specific movie
     x=gets.strip
     if  x=='y'
-      m.get_reviews
+      puts "--------------"
       m.reviews.each{ |review|
         puts "Score: #{review.score}"
-        puts "#{review.publication}, #{review.author}"
-        puts "---"
+        if review.author==''
+          puts "From: #{review.publication}"
+        else
+          puts "From: #{review.publication}, by #{review.author}"
+        end
         puts review.summary
         puts "--------------"
       }
