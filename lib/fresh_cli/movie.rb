@@ -33,10 +33,12 @@ class FreshCli::Movie
   end
 
   def get_reviews
-    reviews_array = Scraper.scrape_review_page("#{@url}/#{@review_url}")
-    reviews_array.each do |x|
-      a = FreshCli::Review.new(x)
-      @reviews << a
+    if @reviews = []
+      reviews_array = Scraper.scrape_review_page("#{@url}/#{@review_url}")
+      reviews_array.each do |x|
+        a = FreshCli::Review.new(x)
+        @reviews << a
+      end
     end
   end
 
