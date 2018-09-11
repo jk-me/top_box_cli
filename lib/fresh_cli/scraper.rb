@@ -1,7 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
-require_relative './movie'
 
 class Scraper
   def self.scrape_movie_list
@@ -22,28 +21,35 @@ class Scraper
       movies_attributes << att_hash
       i+=1
     end
-
     movies_attributes
   end
 
-  def self.scrape_movie_page( url = '/title/tt3104988') #?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=f9f31d04-fc22-4d12-86b4-f46e25aa2f6f&pf_rd_r=9QK3BADQX8VE4EES1Q9S&pf_rd_s=center-1&pf_rd_t=15506&pf_rd_i=boxoffice&ref_=cht_bo_2')
+  def self.scrape_movie_page( url = '/title/tt3104988')
     doc = Nokogiri::HTML(open('https://www.imdb.com' + url))
-    #binding.pry
-    # metascores = doc.css('.metacriticScore').text.strip
-    # ratings = doc.css('.txt-block span')[0].text.capitalize
-    # runtimes = doc.css('.txt-block time').text
-    # reviews url = doc.css('.titleReviewBarSubItem a').attribute('href').value
   end
 
-  def scrape_review_page(url = 'title/tt3104988/criticreviews?ref_=tt_ov_rt')
+  def self.scrape_review_page(url = 'title/tt3104988/criticreviews?ref_=tt_ov_rt')
     doc = Nokogiri::HTML(open('https://www.imdb.com/' + url))
-    #review score: doc.css('.critscore')[0].text.strip
-    #review publication: doc.css('.review b span')[0].text
-    #review author: doc.css('.review span span')[0].text
-        #some reviews may not have authors listed
-    #review summary:  doc.css('.review div')[5].text
+    scores = doc.css('.critscore').collect{|y| y.text.strip}
+    publications = doc.css('.review b span').collect{|y| y.text}
+    authors = doc.css('.review span span').collect{|y| y.text}
+      #some_reviews may not have authors listed
+    summarys = doc.css('.review div').collect{|y| y.text}
 
+    review_attributes=[]
+    i=0
+    while i < scores.length
+      att_hash={}
+      att_hash[:score] = scores[i]
+      att_hash[:publication] = publications[i]
+      att_hash[:author] = authors[i]
+      att_hash[:summary] = summarys[i]
+      review_attributes << att_hash
+      i+=1
+    end
+    review_attributes
   end
+
 end
 
 

@@ -1,4 +1,4 @@
-class Movie
+class FreshCli::Movie
   attr_accessor :title, :weeks_in_theater, :total_gross, :url, :summary, :metascore, :rating, :runtime, :review_url, :reviews
   @@all=[]
 
@@ -7,6 +7,7 @@ class Movie
     @weeks_in_theater = attribute_hash[:weeks_in_theater]
     @total_gross = attribute_hash[:total_gross]
     @url = attribute_hash[:url]
+    @reviews = []
     @@all << self
   end
 
@@ -14,8 +15,12 @@ class Movie
     @@all
   end
 
-  def self.new_from_collection(movie_attributes_array)
-    movie_attributes_array.each{ |x| Movie.new(x) }
+  def num
+    @@all.index(self)+1
+  end
+
+  def self.new_from_collection(movies_attributes_array)
+    movies_attributes_array.each{ |x| FreshCli::Movie.new(x) }
   end
 
   def get_movie_details
@@ -27,8 +32,12 @@ class Movie
     @review_url = movie_page.css('.titleReviewBarSubItem a').attribute('href').value
   end
 
-  def reviews
-    Review.new
+  def get_reviews
+    reviews_array = Scraper.scrape_review_page(@url+'/'+@review_url)
+    reviews_array.each do |x|
+      a = FreshCli::Review.new(x)
+      @reviews << a
+    end
   end
 
 end

@@ -1,37 +1,41 @@
 #cli controller
 require 'pry'
-require_relative './scraper'
-require_relative './movie'
-class FreshCli::CLI
 
+class FreshCli::CLI
+#Movie atts :title, :weeks_in_theater, :total_gross, :url
+# :summary, :metascore, :rating, :runtime, :review_url, :reviews
   def call
-    puts 'Current Top Box Office Movies certified fresh by RottenTomatoes.com'
+    puts 'Current Top Box Office Movies by imdb.com'
     list_movies
-    #menu
+    menu
   end
 
   def list_movies
     #parse array of movie objects to output list
-    #puts "1. Crazy Rich Asians, Tomatometr: 94%, Audience Score: 87%"
-    Movie.new_from_collection(Scraper.scrape_movie_list)
-    #Movie.all[1].get_movie_details
-    binding.pry
-
-    #etc.
+    FreshCli::Movie.new_from_collection(Scraper.scrape_movie_list)
+    FreshCli::Movie.all.each do |m|
+      puts "#{m.num}. #{m.title}"
+      puts "Week #{m.weeks_in_theater}, Total gross: #{m.total_gross}"
+      puts '--------------'
+      m.get_movie_details
+      m.get_reviews
+      puts m.reviews[0].author
+    end
   end
 
   def menu
     #takes user input to provide more information
     puts "Enter number of a movie on the list to view a plot summary, or 'exit' to quit"
-    x=gets.strip
-    if x=='1'
-      puts 'crazy rich asians summary'
-      review_menu#(movie)
+    x = gets.strip
+    num = x.to_i
+    if num > 0 and num < Movie.all.length + 1
+      puts Movie.all[num-1].title
+      #review_menu#(movie)
     elsif x=='exit'
       exit
     else
-      puts "invalid entry, enter another number or 'exit' to quit"
-      list_movies
+      puts "invalid entry"
+      #list_movies
       menu
     end
   end
