@@ -34,7 +34,7 @@ class Scraper
     publications = doc.css('.review b span').collect{|y| y.text}
     authors = doc.css('.review span span').collect{|y| y.text}
       #some_reviews may not have authors listed
-    summarys = doc.css('.review div').collect{|y| y.text}
+    summarys = doc.css('.review div').collect{|y| y.text.strip}
 
     review_attributes=[]
     i=0
