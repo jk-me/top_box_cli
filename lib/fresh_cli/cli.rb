@@ -17,25 +17,34 @@ class FreshCli::CLI
       puts "#{m.num}. #{m.title}"
       puts "Week #{m.weeks_in_theater}, Total gross: #{m.total_gross}"
       puts '--------------'
-      m.get_movie_details
-      m.get_reviews
-      puts m.reviews[0].author
+      #m.get_movie_details
+      #m.get_reviews
+      #puts m.reviews[0].author
     end
   end
 
   def menu
     #takes user input to provide more information
-    puts "Enter number of a movie on the list to view a plot summary, or 'exit' to quit"
+    puts "Enter number of a movie on the list to view a plot summary, 'list' to see list again or 'exit' to quit"
     x = gets.strip
     num = x.to_i
-    if num > 0 and num < Movie.all.length + 1
-      puts Movie.all[num-1].title
+    if num > 0 and num < FreshCli::Movie.all.length + 1
+      m = FreshCli::Movie.all[num-1]
+      m.get_movie_details
+      puts "#{m.title}, #{m.runtime}"
+      puts "Metascore: #{m.metascore}"
+      puts "---------"
+      puts m.summary
+      puts "---------"
+      review_menu
       #review_menu#(movie)
     elsif x=='exit'
       exit
+    elsif x=='list'
+      list_movies
+      menu
     else
       puts "invalid entry"
-      #list_movies
       menu
     end
   end
