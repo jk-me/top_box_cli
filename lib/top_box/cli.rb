@@ -27,11 +27,11 @@ class TopBox::CLI
 
       puts "---------"
       puts "#{m.title}, #{m.runtime}"
-      puts "Metascore: #{m.metascore}"
+      puts "Metascore: #{m.metascore}/100"
       puts "---------"
       puts m.summary
       puts "---------"
-      puts "Would you like to see some Metacritic reviews from this movie? y/n"
+      puts "Would you like to see some critic reviews from this movie? y/n"
       m.get_reviews
       review_menu(m)
     elsif x=='exit'
@@ -51,7 +51,7 @@ class TopBox::CLI
     if  x=='y'
       puts "--------------"
       m.reviews.each{ |review|
-        puts "Score: #{review.score}"
+        puts "Score: #{review.score}/100"
         if review.author==''
           puts "From: #{review.publication}"
         else

@@ -33,7 +33,7 @@ class TopBox::Movie
   end
 
   def get_reviews
-    if @reviews = []
+    if @reviews == []
       reviews_array = Scraper.scrape_review_page("#{@url}/#{@review_url}")
       reviews_array.each do |x|
         a = TopBox::Review.new(x)
