@@ -1,7 +1,3 @@
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
-
 class Scraper
   def self.scrape_movie_list
     doc = Nokogiri::HTML(open('https://www.imdb.com/chart/boxoffice/'))

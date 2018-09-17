@@ -19,11 +19,13 @@ class TopBox::CLI
   def menu
     #takes user input to provide more information
     puts "Enter number of a movie from the list to view a plot summary, 'list' to see the list of movies again or 'exit' to quit"
-    x = gets.strip
+    x = gets.strip.downcase
     num = x.to_i
     if num > 0 and num < TopBox::Movie.all.length + 1
       m = TopBox::Movie.all[num-1]
-      m.get_movie_details
+      if !m.summary
+        m.get_movie_details
+      end
 
       puts "---------"
       puts "#{m.title}, #{m.runtime}"
@@ -31,8 +33,6 @@ class TopBox::CLI
       puts "---------"
       puts m.summary
       puts "---------"
-      puts "Would you like to see some critic reviews from this movie? y/n"
-      m.get_reviews
       review_menu(m)
     elsif x=='exit'
       exit
@@ -47,8 +47,10 @@ class TopBox::CLI
 
   def review_menu(m)
     #asks if user would like to see reviews for specific movie
-    x=gets.strip
+    puts "Would you like to see some critic reviews from this movie? y/n"
+    x=gets.strip.downcase
     if  x=='y'
+      m.get_reviews
       puts "--------------"
       m.reviews.each{ |review|
         puts "Score: #{review.score}/100"

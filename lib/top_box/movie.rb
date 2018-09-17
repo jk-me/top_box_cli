@@ -25,6 +25,7 @@ class TopBox::Movie
 
   def get_movie_details
     movie_page = Scraper.scrape_movie_page(@url) #'/title/tt3104988'
+
     @summary = movie_page.css('.inline.canwrap span')[0].text.strip
     @metascore = movie_page.css('.metacriticScore').text.strip
     @rating = movie_page.css('.txt-block span')[0].text.capitalize
