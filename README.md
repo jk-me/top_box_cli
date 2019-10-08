@@ -9,7 +9,14 @@ This app was built on ruby 2.3.3
 
 ## Usage
 
-Initialize application with command below, then follow on screen prompts.
+For gem installation:
+  `gem 'top_box'`
+
+  In main.rb
+  `require 'top_box'
+   TopBox::CLI.new.call`
+
+For locally cloned repositories, initialize application with command below, then follow on screen prompts.
 
     $ bin/top_box
 
