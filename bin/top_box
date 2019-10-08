@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/top_box_env'
+require_relative '../lib/top_box'
 
 TopBox::CLI.new.call
