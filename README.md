@@ -3,26 +3,32 @@
 This is a Ruby CLI application that allows the user to view summaries and critic reviews of current top box office films. Data provided by imdb.com.
 
 
-##Requirements
+## Requirements
 
 This app was built on ruby 2.3.3
 
 ## Usage
 
-For gem installation:
-  `gem 'top_box'`
+For gem installation: ($ signals a terminal command)
 
-  In main.rb
-  `require 'top_box'
-   TopBox::CLI.new.call`
+This will install the gem in your environment, then use irb (the interactive ruby shell) to activate a new instance of the CLI application.
+  ```
+  $gem install 'top_box'
+  $irb
+  $require 'top_box'
+  $TopBox::CLI.new.call
+  ```
 
 For locally cloned repositories, initialize application with command below, then follow on screen prompts.
 
     $ bin/top_box
+    
+## Author
 
-## Blog
-
-A blog post detailing notes on the creation of this app can be found here: http://jellyjen.com/top_box_cli
+* **Jenny Kam**
+ [jk-me](https://github.com/jk-me)
+* **Blog:** [TopBox App](https://jk-me.github.io/top_box_cli)
+* **Blog:** [Publishing a Ruby Gem](https://jk-me.github.io/ruby_cli_gem_-_live_version)
 
 ## Contributing
 
