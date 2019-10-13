@@ -1,11 +1,10 @@
 # TopBox
 
-This is a Ruby CLI application that allows the user to view summaries and critic reviews of current top box office films. Data provided by imdb.com.
-
+This is a Ruby CLI command-line interface application that allows the user to view summaries and critic reviews of current top box office films. Data provided by imdb.com.
 
 ##Requirements
 
-This app was built on ruby 2.3.3
+This app was built on ruby 2.3.3.
 
 ## Usage
 
