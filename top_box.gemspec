@@ -5,12 +5,12 @@ require "top_box/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "top_box"
-  spec.version       = '0.1.1'
+  spec.version       = '0.1.2'
   spec.authors       = ["'Jenny Kam'"]
   spec.email         = ["'jkam17@gmail.com'"]
 
-  spec.summary       = %q{Top grossing movies currently in theaters. }
-  spec.description   = %q{Provides top box office movie summaries, and critic reviews from imdb.com}
+  spec.summary       = %q{CLI application to show top grossing movies currently in theaters. }
+  spec.description   = %q{A command-line application that provides top box office movie summaries, and critic reviews from imdb.com}
   spec.homepage      = "https://github.com/jk-me/top_box_cli"
   spec.license       = "MIT"
 
